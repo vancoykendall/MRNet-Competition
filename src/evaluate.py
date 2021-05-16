@@ -11,6 +11,7 @@ from sklearn import metrics
 from torch.autograd import Variable
 
 from loader import load_data
+from model import MRNet
 from model import TripleMRNet
 
 def get_parser():

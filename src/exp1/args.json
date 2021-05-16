@@ -1,0 +1,13 @@
+{
+    "rundir": "exp1",
+    "task": "abnormal",
+    "seed": 101,
+    "gpu": false,
+    "learning_rate": 1e-05,
+    "weight_decay": 0.01,
+    "epochs": 50,
+    "max_patience": 5,
+    "factor": 0.3,
+    "backbone": "resnet18",
+    "abnormal_model": null
+}
