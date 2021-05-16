@@ -7,7 +7,7 @@ from torchvision import models
 class MRNet(nn.Module):
     def __init__(self):
         super().__init__()
-        self.model = models.alexnet(pretrained=True)
+        self.model = models.alexnet(pretrained=False)
         self.gap = nn.AdaptiveAvgPool2d(1)
         self.classifier = nn.Linear(256, 1)
 
@@ -24,31 +24,31 @@ class TripleMRNet(nn.Module):
         super().__init__()
         self.backbone = backbone
         if self.backbone == "resnet18":
-            resnet = models.resnet18(pretrained=training)
+            resnet = models.resnet18(pretrained=False)
             modules = list(resnet.children())[:-1]
             self.axial_net = nn.Sequential(*modules)
             for param in self.axial_net.parameters():
                 param.requires_grad = False
         elif self.backbone == "alexnet":
-            self.axial_net = models.alexnet(pretrained=training)
+            self.axial_net = models.alexnet(pretrained=False)
 
         if self.backbone == "resnet18":
-            resnet = models.resnet18(pretrained=training)
+            resnet = models.resnet18(pretrained=False)
             modules = list(resnet.children())[:-1]
             self.sagit_net = nn.Sequential(*modules)
             for param in self.sagit_net.parameters():
                 param.requires_grad = False
         elif self.backbone == "alexnet":
-            self.sagit_net = models.alexnet(pretrained=training)
+            self.sagit_net = models.alexnet(pretrained=False)
         
         if self.backbone == "resnet18":
-            resnet = models.resnet18(pretrained=training)
+            resnet = models.resnet18(pretrained=False)
             modules = list(resnet.children())[:-1]
             self.coron_net = nn.Sequential(*modules)
             for param in self.coron_net.parameters():
                 param.requires_grad = False
         elif self.backbone == "alexnet":
-            self.coron_net = models.alexnet(pretrained=training)
+            self.coron_net = models.alexnet(pretrained=False)
 
         self.gap_axial = nn.AdaptiveAvgPool2d(1)
         self.gap_sagit = nn.AdaptiveAvgPool2d(1)

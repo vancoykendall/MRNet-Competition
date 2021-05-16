@@ -4,3 +4,6 @@ data/
 baseline/
 *.npy
 .DS_Store
+.vscode
+exp*/
+metadata.csv

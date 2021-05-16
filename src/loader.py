@@ -75,6 +75,7 @@ class Dataset(data.Dataset):
         vol_axial = (vol_axial - MEAN) / STDDEV
         vol_axial = np.stack((vol_axial,)*3, axis=1)
         vol_axial_tensor = torch.FloatTensor(vol_axial)
+        # print("axial tensor/np:", vol_axial_tensor.shape, vol_axial.shape)
         
         # sagittal
         pad = int((vol_sagit.shape[2] - INPUT_DIM)/2)
@@ -83,6 +84,7 @@ class Dataset(data.Dataset):
         vol_sagit = (vol_sagit - MEAN) / STDDEV
         vol_sagit = np.stack((vol_sagit,)*3, axis=1)
         vol_sagit_tensor = torch.FloatTensor(vol_sagit)
+        # print("sagit tensor/np:", vol_sagit_tensor.shape, vol_sagit.shape)
 
         # coronal
         pad = int((vol_coron.shape[2] - INPUT_DIM)/2)
@@ -91,6 +93,7 @@ class Dataset(data.Dataset):
         vol_coron = (vol_coron - MEAN) / STDDEV
         vol_coron = np.stack((vol_coron,)*3, axis=1)
         vol_coron_tensor = torch.FloatTensor(vol_coron)
+        # print("coron tensor/np:", vol_coron_tensor.shape, vol_coron.shape)
 
         label_tensor = torch.FloatTensor([self.labels[index]])
 
@@ -106,7 +109,7 @@ def load_data(task="acl", use_gpu=False):
     train_dataset = Dataset(train_dir, task, use_gpu)
     valid_dataset = Dataset(valid_dir, task, use_gpu)
 
-    train_loader = data.DataLoader(train_dataset, batch_size=1, num_workers=1, shuffle=True)
-    valid_loader = data.DataLoader(valid_dataset, batch_size=1, num_workers=1, shuffle=False)
+    train_loader = data.DataLoader(train_dataset, batch_size=1, num_workers=16, shuffle=True)
+    valid_loader = data.DataLoader(valid_dataset, batch_size=1, num_workers=16, shuffle=False)
 
     return train_loader, valid_loader
