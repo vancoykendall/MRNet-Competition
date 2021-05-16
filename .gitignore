@@ -3,3 +3,4 @@ MRNet-master/
 data/
 baseline/
 *.npy
+.DS_Store
