@@ -18,13 +18,15 @@ from loader import Dataset, load_data
 #       print(e)
 #   break
 
-data_dir = 'data/train/axial'
-data_files = os.listdir(data_dir)
-channels = []
-for i, fname in enumerate(data_files):
-  data_array = np.load(osp.join(data_dir, fname))
-  channels.append(data_array.shape[0])
-channels = np.array(channels)
+# data_dir = 'data/train/axial'
+# data_files = os.listdir(data_dir)
+# channels = []
+# for i, fname in enumerate(data_files):
+#   data_array = np.load(osp.join(data_dir, fname))
+#   channels.append(data_array.shape[0])
+# channels = np.array(channels)
 
-print("min:", channels.min(), "max:", channels.max(), "mean:", channels.mean())
-print(channels)
+# print("min:", channels.min(), "max:", channels.max(), "mean:", channels.mean())
+# print(channels)
+
+

@@ -25,7 +25,7 @@ def train(rundir, task, backbone, epochs, learning_rate, use_gpu,
         for fname in files:
             if fname.endswith(".json"):
                 continue
-            ep = int(fname[27:])
+            ep = int(fname.split("epoch")[-1])
             if ep >= max_epoch:
                 max_epoch = ep
                 model_path = os.path.join(dirpath, fname)
